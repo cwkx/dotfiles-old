@@ -4,4 +4,6 @@ pacaur -S wget curl git binutils
 pacaur -S oh-my-zsh-git
 
 cp .Xresources ~/.Xresources
-cp .zshrc ~/.Xresources
+cp .zshrc ~/.zshrc
+
+xrdb ~/.Xresources
