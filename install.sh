@@ -9,6 +9,12 @@ ln -s ~/repos/dotfiles/.vimrc		~/.vimrc
 ln -s ~/repos/dotfiles/.Xresources 	~/.Xresources
 ln -s ~/repos/dotfiles/.zshrc		~/.zshrc
 
+# install fonts
+font_dir="$HOME/.local/share/fonts"
+mkdir -p $font_dir
+cp "$HOME/repos/dotfiles/fonts/DejaVu Sans Mono for Powerline.ttf" $font_dir
+fc-cache -f $font_dir
+
 # setup
 xrdb ~/.Xresources
 
