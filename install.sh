@@ -9,6 +9,10 @@ ln -s ~/repos/dotfiles/.vimrc		~/.vimrc
 ln -s ~/repos/dotfiles/.Xresources 	~/.Xresources
 ln -s ~/repos/dotfiles/.zshrc		~/.zshrc
 
+# install vundle and vim plugins
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
 # install fonts
 font_dir="$HOME/.local/share/fonts"
 mkdir -p $font_dir
