@@ -24,8 +24,8 @@
 *color14: #8ABEB7
 *color15: #C5C8C6
 
-URxvt.font:     xft:DejaVu Sans Mono for Powerline:size=10
-URxvt.boldFont: xft:DejaVu Sans Mono for Powerline:style=Bold:size=10
+URxvt*font:     xft:DejaVu Sans Mono for Powerline:size=10
+URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:style=Bold:size=10
 !URxvt.font:     xft:Hack:size=10
 !URxvt.boldFont: xft:Hack:style=Bold:size=10
 URxvt.letterSpace: -1

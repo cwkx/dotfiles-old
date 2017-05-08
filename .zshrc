@@ -14,6 +14,7 @@ plugins=(git)
 
 alias l="ls -l"
 alias fm="pcmanfm"
+alias web="chromium"
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

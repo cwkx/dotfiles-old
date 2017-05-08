@@ -8,6 +8,7 @@ pacaur -S oh-my-zsh-git
 ln -s ~/repos/dotfiles/.vimrc		~/.vimrc
 ln -s ~/repos/dotfiles/.Xresources 	~/.Xresources
 ln -s ~/repos/dotfiles/.zshrc		~/.zshrc
+ln -s ~/repos/dotfiles/.latexmkrc	~/.latexmkrc
 
 # install vundle and vim plugins
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -17,6 +18,7 @@ vim +PluginInstall +qall
 font_dir="$HOME/.local/share/fonts"
 mkdir -p $font_dir
 cp "$HOME/repos/dotfiles/fonts/DejaVu Sans Mono for Powerline.ttf" $font_dir
+cp "$HOME/repos/dotfiles/fonts/DejaVu Sans Mono Bold for Powerline.ttf" $font_dir
 fc-cache -f $font_dir
 
 # setup
