@@ -25,17 +25,14 @@
 *color15: #C5C8C6
 
 URxvt*font:     xft:DejaVu Sans Mono for Powerline:size=10
-URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:style=Bold:size=10
-!URxvt.font:     xft:Hack:size=10
-!URxvt.boldFont: xft:Hack:style=Bold:size=10
+URxvt*boldFont: xft:DejaVu Sans Mono Bold for Powerline:size=10
 URxvt.letterSpace: -1
 URxvt.geometry: 125x40
 URxvt.cursorBlink: 1
 URxvt.saveLines: 8000
 URxvt.scrollBar: 0
 
-!xterm*faceName:DejaVu Sans Mono:pixelsize=12
-!xterm*faceName: xft:Hack:size=10
+xterm*faceName:DejaVu Sans Mono for Powerline:pixelsize=12
 xterm*VT100.geometry: 125x40
 xterm*saveLines: 8000
 xterm*scrollBar: 0
