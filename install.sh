@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # install dependencies
-pacaur -S wget curl git binutils oh-my-zsh-git gst-plugins-good vimb
+pacaur -S wget curl git binutils oh-my-zsh-git gst-libav gst-plugins-good vimb
 
 # create paths that may not exist
 mkdir -p ~/.vim/colors 
