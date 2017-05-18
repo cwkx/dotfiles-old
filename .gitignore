@@ -1,0 +1,11 @@
+.Xauthority
+.bash_profile
+.cache*
+.esd_auth
+.pki*
+.ssh*
+.texlive*
+.xsession-errors
+.zcompdump*
+.zhistory
+.zsh_history

@@ -23,4 +23,4 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-eval "$HOME/repos/dotfiles/colors.sh"
+eval "$HOME/.scripts/colors.sh"
