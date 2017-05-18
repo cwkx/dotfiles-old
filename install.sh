@@ -8,6 +8,7 @@ mkdir -p ~/.vim/colors
 mkdir -p ~/.config/vimb
 
 # create symlinks
+ln -s ~/repos/dotfiles/.bashrc		~/.bashrc
 ln -s ~/repos/dotfiles/.vimrc		~/.vimrc
 ln -s ~/repos/dotfiles/.Xresources 	~/.Xresources
 ln -s ~/repos/dotfiles/.zshrc		~/.zshrc
