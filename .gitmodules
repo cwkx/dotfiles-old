@@ -1,0 +1,9 @@
+[submodule "repos/dwm"]
+	path = repos/dwm
+	url = http://git.suckless.org/dwm
+[submodule "repos/st"]
+	path = repos/st
+	url = http://git.suckless.org/st
+[submodule "repos/dmenu"]
+	path = repos/dmenu
+	url = http://git.suckless.org/dmenu
