@@ -38,18 +38,3 @@ index a9ac303..f800387 100644
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-diff --git a/config.mk b/config.mk
-index 80dc936..14bd644 100644
---- a/config.mk
-+++ b/config.mk
-@@ -7,8 +7,8 @@ VERSION = 6.1
- PREFIX = /usr/local
- MANPREFIX = ${PREFIX}/share/man
- 
--X11INC = /usr/X11R6/include
--X11LIB = /usr/X11R6/lib
-+X11INC = /usr/include
-+X11LIB = /usr/lib/X11
- 
- # Xinerama, comment if you don't want it
- XINERAMALIBS  = -lXinerama

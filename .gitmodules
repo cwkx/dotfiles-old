@@ -1,6 +1,8 @@
 [submodule "repos/dwm"]
 	path = repos/dwm
 	url = http://git.suckless.org/dwm
+	ignore = dirty
 [submodule "repos/st"]
 	path = repos/st
 	url = http://git.suckless.org/st
+	ignore = dirty
