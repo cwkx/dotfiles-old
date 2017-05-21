@@ -10,6 +10,9 @@ plugins=(git)
 # export ARCHFLAGS="-arch x86_64"
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 alias l="ls -l"
 alias web="vimb"
 
