@@ -6,3 +6,7 @@
 	path = repos/st
 	url = http://git.suckless.org/st
 	ignore = dirty
+[submodule "repos/dmenu"]
+	path = repos/dmenu
+	url = http://git.suckless.org/dmenu
+	ignore = dirty

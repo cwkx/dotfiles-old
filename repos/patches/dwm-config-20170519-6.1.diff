@@ -1,8 +1,16 @@
 diff --git a/config.def.h b/config.def.h
-index a9ac303..0b326b7 100644
+index a9ac303..1c1f199 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -11,7 +11,7 @@ static const char col_gray1[]       = "#222222";
+@@ -4,14 +4,14 @@
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+-static const int topbar             = 1;        /* 0 means bottom bar */
++static const int topbar             = 0;        /* 0 means bottom bar */
+ static const char *fonts[]          = { "monospace:size=10" };
+ static const char dmenufont[]       = "monospace:size=10";
+ static const char col_gray1[]       = "#222222";
  static const char col_gray2[]       = "#444444";
  static const char col_gray3[]       = "#bbbbbb";
  static const char col_gray4[]       = "#eeeeee";
@@ -20,7 +28,7 @@ index a9ac303..0b326b7 100644
  
  static const Rule rules[] = {
  	/* xprop(1):
-@@ -34,7 +34,7 @@ static const Rule rules[] = {
+@@ -34,17 +34,17 @@ static const Rule rules[] = {
  /* layout(s) */
  static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
  static const int nmaster     = 1;    /* number of clients in master area */
@@ -29,7 +37,11 @@ index a9ac303..0b326b7 100644
  
  static const Layout layouts[] = {
  	/* symbol     arrange function */
-@@ -44,7 +44,7 @@ static const Layout layouts[] = {
+-	{ "[]=",      tile },    /* first entry is default */
+-	{ "><>",      NULL },    /* no layout function means floating behavior */
++	{ "[T]",      tile },    /* first entry is default */
++	{ "[F]",      NULL },    /* no layout function means floating behavior */
+ 	{ "[M]",      monocle },
  };
  
  /* key definitions */
