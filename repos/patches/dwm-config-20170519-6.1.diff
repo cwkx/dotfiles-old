@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index a9ac303..c79951d 100644
+index a9ac303..0b326b7 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -11,7 +11,7 @@ static const char col_gray1[]       = "#222222";
@@ -7,7 +7,7 @@ index a9ac303..c79951d 100644
  static const char col_gray3[]       = "#bbbbbb";
  static const char col_gray4[]       = "#eeeeee";
 -static const char col_cyan[]        = "#005577";
-+static const char col_cyan[]        = "#005f87";
++static const char col_cyan[]        = "#353535";
  static const char *colors[][3]      = {
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },

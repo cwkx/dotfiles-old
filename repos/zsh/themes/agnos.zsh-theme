@@ -27,22 +27,9 @@ color_foreground="c5/c8/c6" # Base 05
 color_background="1d/1f/21" # Base 00
 color_cursor="c5/c8/c6" # Base 05
 
-if [ -n "$TMUX" ]; then
-  # Tell tmux to pass the escape sequences through
-  # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-  printf_template='\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\'
-  printf_template_var='\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\'
-  printf_template_custom='\033Ptmux;\033\033]%s%s\033\033\\\033\\'
-elif [ "${TERM%%-*}" = "screen" ]; then
-  # GNU screen (screen, screen-256color, screen-256color-bce)
-  printf_template='\033P\033]4;%d;rgb:%s\033\\'
-  printf_template_var='\033P\033]%d;rgb:%s\033\\'
-  printf_template_custom='\033P\033]%s%s\033\\'
-else
-  printf_template='\033]4;%d;rgb:%s\033\\'
-  printf_template_var='\033]%d;rgb:%s\033\\'
-  printf_template_custom='\033]%s%s\033\\'
-fi
+printf_template='\033]4;%d;rgb:%s\033\\'
+printf_template_var='\033]%d;rgb:%s\033\\'
+printf_template_custom='\033]%s%s\033\\'
 
 # 16 color space
 printf $printf_template 0  $color00
@@ -69,27 +56,6 @@ printf $printf_template 18 $color18
 printf $printf_template 19 $color19
 printf $printf_template 20 $color20
 printf $printf_template 21 $color21
-
-# foreground / background / cursor color
-if [ -n "$ITERM_SESSION_ID" ]; then
-  # iTerm2 proprietary escape codes
-  printf $printf_template_custom Pg c5c8c6 # forground
-  printf $printf_template_custom Ph 1d1f21 # background
-  printf $printf_template_custom Pi c5c8c6 # bold color
-  printf $printf_template_custom Pj 373b41 # selection color
-  printf $printf_template_custom Pk c5c8c6 # selected text color
-  printf $printf_template_custom Pl c5c8c6 # cursor
-  printf $printf_template_custom Pm 1d1f21 # cursor text
-else
-  printf $printf_template_var 10 $color_foreground
-  if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]; then
-    printf $printf_template_var 11 $color_background
-    if [ "${TERM%%-*}" = "rxvt" ]; then
-      printf $printf_template_var 708 $color_background # internal border (rxvt)
-    fi
-  fi
-  printf $printf_template_custom 12 ";7" # cursor (reverse video)
-fi
 
 # clean up
 unset printf_template
@@ -126,19 +92,8 @@ unset color_cursor
 CURRENT_BG='18'
 
 # Special Powerline characters
-
 () {
   local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-  # NOTE: This segment separator character is correct.  In 2012, Powerline changed
-  # the code points they use for their special characters. This is the new code point.
-  # If this is not working for you, you probably have an old version of the
-  # Powerline-patched fonts installed. Download and install the new version.
-  # Do not submit PRs to change this unless you have reviewed the Powerline code point
-  # history and have new information.
-  # This is defined using a Unicode escape sequence so it is unambiguously readable, regardless of
-  # what font the user is viewing this source code in. Do not replace the
-  # escape sequence with a single literal character.
-  # Do not change this! Do not make it '\u2b80'; that is the old, wrong code point.
   SEGMENT_SEPARATOR=$'\ue0b0'
 }
 
@@ -179,26 +134,37 @@ prompt_context() {
   fi
 }
 
-# Git: branch/detached head, dirty status
+# Dir: current working directory
+prompt_dir() {
+  prompt_segment white black '%~'
+}
+
+# Status:
+# - was there an error
+# - am I root
+# - are there background jobs?
+prompt_status() {
+  local symbols
+  symbols=()
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
+
+  [[ -n "$symbols" ]] && prompt_segment 18 default "$symbols"
+}
+
 prompt_git() {
   (( $+commands[git] )) || return
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         # 
+    PL_BRANCH_CHAR=$' \ue0a0'         # 
   }
   local ref dirty mode repo_path
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
-    if [[ -n $dirty ]]; then
-      prompt_segment yellow black
-    else
-      prompt_segment green black
-    fi
-
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
       mode=" <B>"
     elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
@@ -222,101 +188,14 @@ prompt_git() {
   fi
 }
 
-prompt_bzr() {
-    (( $+commands[bzr] )) || return
-    if (bzr status >/dev/null 2>&1); then
-        status_mod=`bzr status | head -n1 | grep "modified" | wc -m`
-        status_all=`bzr status | head -n1 | wc -m`
-        revision=`bzr log | head -n2 | tail -n1 | sed 's/^revno: //'`
-        if [[ $status_mod -gt 0 ]] ; then
-            prompt_segment yellow black
-            echo -n "bzr@"$revision "✚ "
-        else
-            if [[ $status_all -gt 0 ]] ; then
-                prompt_segment yellow black
-                echo -n "bzr@"$revision
-
-            else
-                prompt_segment green black
-                echo -n "bzr@"$revision
-            fi
-        fi
-    fi
-}
-
-prompt_hg() {
-  (( $+commands[hg] )) || return
-  local rev status
-  if $(hg id >/dev/null 2>&1); then
-    if $(hg prompt >/dev/null 2>&1); then
-      if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
-        # if files are not added
-        prompt_segment red white
-        st='±'
-      elif [[ -n $(hg prompt "{status|modified}") ]]; then
-        # if any modification
-        prompt_segment yellow black
-        st='±'
-      else
-        # if working copy is clean
-        prompt_segment green black
-      fi
-      echo -n $(hg prompt "☿ {rev}@{branch}") $st
-    else
-      st=""
-      rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
-      branch=$(hg id -b 2>/dev/null)
-      if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
-        st='±'
-      elif `hg st | grep -q "^[MA]"`; then
-        prompt_segment yellow black
-        st='±'
-      else
-        prompt_segment green black
-      fi
-      echo -n "☿ $rev@$branch" $st
-    fi
-  fi
-}
-
-# Dir: current working directory
-prompt_dir() {
-  prompt_segment 24 white '%~'
-}
-
-# Virtualenv: current working virtualenv
-prompt_virtualenv() {
-  local virtualenv_path="$VIRTUAL_ENV"
-  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
-  fi
-}
-
-# Status:
-# - was there an error
-# - am I root
-# - are there background jobs?
-prompt_status() {
-  local symbols
-  symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
-
-  [[ -n "$symbols" ]] && prompt_segment 18 default "$symbols"
-}
 
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_status
-  prompt_virtualenv
   prompt_context
   prompt_dir
   prompt_git
-  prompt_bzr
-  prompt_hg
   prompt_end
 }
 
