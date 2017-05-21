@@ -19,7 +19,7 @@ color14=$color06 # Base 0C - Bright Cyan
 color15="ff/ff/ff" # Base 07 - Bright White
 color16="de/93/5f" # Base 09
 color17="a3/68/5a" # Base 0F
-color18="28/2a/2e" # Base 01
+color18="2c/2c/2c" # Base 01
 color19="37/3b/41" # Base 02
 color20="b4/b7/b4" # Base 04
 color21="e0/e0/e0" # Base 06
@@ -123,7 +123,7 @@ unset color_cursor
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
-CURRENT_BG='black'
+CURRENT_BG='18'
 
 # Special Powerline characters
 
@@ -175,7 +175,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black white "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment 18 white "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -282,7 +282,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue black '%~'
+  prompt_segment 24 white '%~'
 }
 
 # Virtualenv: current working virtualenv
