@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 877afab..4c2dbf8 100644
+index 877afab..4b64af4 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,8 +5,8 @@
@@ -31,3 +31,12 @@ index 877afab..4c2dbf8 100644
  	"red3",
  	"green3",
  	"yellow3",
+@@ -128,7 +128,7 @@ unsigned int defaultrcs = 257;
+  * 6: Bar ("|")
+  * 7: Snowman ("☃")
+  */
+-unsigned int cursorshape = 2;
++unsigned int cursorshape = 6;
+ 
+ /*
+  * Default columns and rows numbers
