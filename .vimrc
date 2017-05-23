@@ -1,7 +1,6 @@
 syntax on
-filetype plugin indent on
-set timeoutlen=1000 ttimeoutlen=0
 set number
+set tabstop=3
 set numberwidth=3
 set mouse=a
 set spell spelllang=en_gb

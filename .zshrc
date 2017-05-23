@@ -13,10 +13,6 @@ plugins=(git)
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-alias l="ls -l"
-alias c="clear"
-alias web="vimb"
-
 eval $(dircolors ~/.dircolors)
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache

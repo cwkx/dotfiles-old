@@ -15,4 +15,9 @@ cd ../dmenu && git reset --hard HEAD && git clean -fxd
 git apply ../patches/dmenu-config-20170521-4.7.diff
 make && sudo make install
 
+# dstatus
+cd ../dstatus
+gcc -Wall -pedantic -std=c99 -lX11 dstatus.c -o dstatus
+sudo mv dstatus /usr/bin
+
 cd ..
