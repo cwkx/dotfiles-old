@@ -1,6 +1,5 @@
 syntax on
-"filetype plugin indent on
-"set nowrap
+filetype plugin indent on
 set timeoutlen=1000 ttimeoutlen=0
 set number
 set numberwidth=3
@@ -17,6 +16,3 @@ inoremap <buffer> <silent> <Up>   <C-o>gk
 inoremap <buffer> <silent> <Down> <C-o>gj
 inoremap <buffer> <silent> <Home> <C-o>g<Home>
 inoremap <buffer> <silent> <End>  <C-o>g<End>
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"

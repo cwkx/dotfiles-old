@@ -14,6 +14,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 alias l="ls -l"
+alias c="clear"
 alias web="vimb"
 
 eval $(dircolors ~/.dircolors)
