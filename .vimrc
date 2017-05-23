@@ -1,6 +1,7 @@
 syntax on
 "filetype plugin indent on
 "set nowrap
+set timeoutlen=1000 ttimeoutlen=0
 set number
 set numberwidth=3
 set mouse=a
