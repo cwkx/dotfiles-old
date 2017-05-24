@@ -94,8 +94,13 @@ int main(void)
 	for (;;sleep(1))
 	{
 		datetime = getdatetime();
+
+#ifdef BATTERY
 		bat0 = getbattery();
 		snprintf(status, 200, " %.0lf%% %s ", bat0, datetime);
+#else
+		snprintf(status, 200, " %s ", datetime);
+#endif
 
 		free(datetime);
 		setstatus(status);
