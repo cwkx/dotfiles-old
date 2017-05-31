@@ -7,6 +7,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'julienr/vim-cellmode'
 " end of plugins
 call vundle#end()
+filetype plugin indent on
 syntax on
 set number
 set tabstop=3
