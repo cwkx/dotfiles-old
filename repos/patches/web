@@ -1,2 +1,2 @@
 !#/bin/bash
-chrome --app=http://archlinux.org
+chromium --app=http://archlinux.org
