@@ -1,6 +1,6 @@
 # setup zsh with custom theme
 ZSH_CUSTOM=$HOME/repos/zsh
-ZSH=/usr/share/oh-my-zsh/
+ZSH=$HOME/.oh-my-zsh/
 ZSH_THEME="agnos"
 
 DISABLE_AUTO_UPDATE="true"
