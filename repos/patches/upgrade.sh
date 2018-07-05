@@ -20,7 +20,7 @@ make && sudo make install
 
 # dstatus
 cd ../dstatus
-gcc -Wall -pedantic -std=c99 -lX11 dstatus.c -o dstatus
+gcc -Wall -pedantic -DBATTERY=1 -std=c99 -lX11 dstatus.c -o dstatus
 sudo mv dstatus /usr/bin
 
 cd ..

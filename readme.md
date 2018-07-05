@@ -6,3 +6,9 @@
 # Manual stuff
 - sudo vim /etc/lxdm/lxdm.conf
 - autologin=chris
+
+# Setup vconsole
+/etc/vconsole.conf
+KEYMAP=uk
+FONT=ter-powerline-v14n
+
