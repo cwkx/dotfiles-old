@@ -10,10 +10,16 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 set number
-set tabstop=3
-set numberwidth=3
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set autoindent
 set mouse=a
 set spell spelllang=en_gb
+set listchars=tab:--,trail:~,extends:>,precedes:<
+set list
 colorscheme cols
 noremap <F7> :tabp <CR>
 noremap <F8> :tabn <CR>
