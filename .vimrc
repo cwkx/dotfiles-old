@@ -1,12 +1,5 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" vundle plugins
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'julienr/vim-cellmode'
-" end of plugins
-call vundle#end()
 filetype plugin indent on
 syntax on
 set number
